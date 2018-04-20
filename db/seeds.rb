@@ -12,9 +12,12 @@ trees = {
   "一" => ["二", "三", "四"],
 }
 
+User.delete_all
 Thing.delete_all
 
+superuser = User.create!(name: "superuser")
+
 trees.each do |parent_name, children|
-  parent = Thing.create!(name: parent_name)
-  children.each { |c| Thing.create!(name: c, parent: parent) }
+  parent = Thing.create!(name: parent_name, created_by: superuser)
+  children.each { |c| Thing.create!(name: c, parent: parent, created_by: superuser) }
 end
