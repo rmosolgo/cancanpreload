@@ -1,6 +1,6 @@
 GraphqlSchema = GraphQL::Schema.define do
   query Types::Query
   use GraphQL::Batch
-  authorization(:cancan)
+  authorization(CanCanWithPreloadingStrategy)
   enable_preloading
 end
